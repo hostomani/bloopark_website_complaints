@@ -34,6 +34,7 @@
                             invisible="dropped or solved"/>
                     <button type="object" name="action_solve" string="Solve" class="btn-primary"
                             invisible="solved or dropped"/>
+                    <button name="print_action_plan" invisible="not action_plan" string="Print Action Plan" type="object" class="btn-primary"/>
                 </header>
                 <sheet>
                     <field name="dropped" invisible="1"/>

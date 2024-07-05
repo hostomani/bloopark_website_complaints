@@ -157,3 +157,8 @@ class WebsiteComplaint(models.Model):
             rec.user_id = self.get_user_with_least_complaints()
             rec.message_subscribe(partner_ids=[rec.user_id.partner_id.id])
 
+    def print_action_plan(self):
+        report_layout = self.env.ref('l10n_din5008.report_layout_din5008')
+        return self.env.ref(
+            'bloopark_website_complaints.action_report_website_complaint_action_plan'
+        ).report_action(self)
