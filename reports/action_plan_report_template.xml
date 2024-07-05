@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+    <template id="report_website_complaint_action_plan">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <div class="page">
+                    <div class="header">
+                        <h2>Action Plan</h2>
+                    </div>
+                    <div class="content">
+                        <p><t t-esc="doc.action_plan"/></p>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    </data>
+</odoo>

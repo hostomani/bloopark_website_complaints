@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="action_report_website_complaint_action_plan" model="ir.actions.report">
+            <field name="name">Action Plan</field>
+            <field name="model">website.complaint</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">bloopark_website_complaints.report_website_complaint_action_plan</field>
+            <field name="report_file">bloopark_website_complaints.report_website_complaint_action_plan</field>
+            <field name="print_report_name">'Action Plan - %s' % (object.name)</field>
+<!--            <field name="paperformat_id" ref="l10n_in_ewaybill_stock.paperformat_ewaybill"/>-->
+            <field name="binding_model_id" ref="model_website_complaint"/>
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+</odoo>

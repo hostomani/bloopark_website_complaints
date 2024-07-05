@@ -21,7 +21,8 @@ Long description of module's purpose
     'depends': [
         'base',
         'website',
-        'mail'
+        'mail',
+        'l10n_din5008'
     ],
 
     # always loaded
@@ -50,6 +51,8 @@ Long description of module's purpose
         'actions/website_complaint_stage.xml',
         'actions/website_complaint_type.xml',
 
+        'reports/action_plan_report_template.xml',
+        'reports/action_plan_report_action.xml',
         # Website Complaint Menu
         'views/menu.xml',
     ],
