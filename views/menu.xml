@@ -1,0 +1,37 @@
+<odoo>
+    <data>
+
+        <!-- Top menu item -->
+        <menuitem name="Complaints" id="bloopark_website_complaints.menu_root"/>
+
+        <menuitem name="Complaints" id="bloopark_website_complaints.website_complaint"
+                  parent="bloopark_website_complaints.menu_root"
+                  action="bloopark_website_complaints.website_complaint_action"/>
+
+        <menuitem name="Configuration"
+                  id="bloopark_website_complaints.website_complaints_config"
+                  parent="bloopark_website_complaints.menu_root"
+                  groups="group_website_complaint_manager"
+        />
+
+        <menuitem
+                name="Stages"
+                id="bloopark_website_complaints.website_complaint_stage"
+                parent="bloopark_website_complaints.website_complaints_config"
+                action="bloopark_website_complaints.website_complaint_stage_action"
+        />
+        <menuitem
+                name="Types"
+                id="bloopark_website_complaints.website_complaint_type"
+                parent="bloopark_website_complaints.website_complaints_config"
+                action="bloopark_website_complaints.website_complaint_type_action"
+        />
+        <menuitem
+                name="Reasons"
+                id="bloopark_website_complaints.website_complaint_drop_reason"
+                parent="bloopark_website_complaints.website_complaints_config"
+                action="bloopark_website_complaints.website_complaint_drop_reason_action"
+        />
+
+    </data>
+</odoo>

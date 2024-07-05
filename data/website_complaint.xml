@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Email template for sending notification to partner when a complaint is created -->
+        <record id="email_template_complaint_registered_notification" model="mail.template">
+            <field name="name">Complaint Registered Notification</field>
+            <field name="model_id" ref="model_website_complaint"/>
+            <field name="subject">complaint {{ object.partner_id.id }}/{{ object.id }} has been created</field>
+            <field name="email_from">{{ (object.company_id.email_formatted) }}</field>
+            <field name="email_to">{{ object.partner_id.email_formatted }}</field>
+            <field name="body_html" type="html">
+                <div>
+                    <h1>New complaint has been registered</h1>
+                    <div>
+                        <t t-out="object.name or ''">Marc Demo</t>
+                    </div>
+                </div>
+            </field>
+        </record>
+
+        <record id="email_template_complaint_closed_notification" model="mail.template">
+            <field name="name">Complaint Closed Notification</field>
+            <field name="model_id" ref="model_website_complaint"/>
+            <field name="subject">complaint {{ object.partner_id.id }}/{{ object.id }} has been closed</field>
+            <field name="email_from">{{ (object.company_id.email_formatted) }}</field>
+            <field name="email_to">{{ object.partner_id.email_formatted }}</field>
+            <field name="body_html" type="html">
+                <div>
+                    <t t-if="object.dropped">
+                        <h1>
+                            Your complaint has been closed as <span>DROPPED</span>
+                        </h1>
+                        <p>
+                            <t t-out="object.drop_reason_id.name"/>
+                        </p>
+                        <p>
+                            <t t-out="object.drop_reason_notes"/>
+                        </p>
+                    </t>
+                    <t t-else="">
+                        <h1>
+                            Your complaint has been closed as <span>SOLVED</span>
+                        </h1>
+                    </t>
+                </div>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record model="ir.actions.act_window" id="website_complaint_stage_action">
+        <field name="name">Stages</field>
+        <field name="res_model">website.complaint.stage</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_website_complaint_stage_tree"/>
+<!--        <field name="search_view_id" ref="analytic.view_account_analytic_line_filter"/>-->
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">
+               No complaints, all good.
+            </p>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_website_complaint_drop_reason_tree" model="ir.ui.view">
+        <field name="name">website.complaint.drop.reason.tree</field>
+        <field name="model">website.complaint.drop.reason</field>
+        <field name="arch" type="xml">
+            <tree string="Complaints" multi_edit="1">
+                <field name="name"/>
+                <field name="note_required"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_website_complaint_stages_form" model="ir.ui.view">
+        <field name="name">website.complaint.drop.reason.form</field>
+        <field name="model">website.complaint.drop.reason</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="note_required"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>
+

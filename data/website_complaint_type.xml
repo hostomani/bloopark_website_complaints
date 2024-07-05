@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="complaint_type_question" model="website.complaint.type">
+            <field name="name">Question</field>
+            <field name="default">True</field>
+        </record>
+        <record id="complaint_type_electrical" model="website.complaint.type">
+            <field name="name">Electrical Issue</field>
+            <field name="default">False</field>
+        </record>
+        <record id="complaint_type_heating" model="website.complaint.type">
+            <field name="name">Heating Issue</field>
+            <field name="default">False</field>
+        </record>
+    </data>
+</odoo>

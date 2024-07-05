@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_website_complaint_type_tree" model="ir.ui.view">
+        <field name="name">website.complaint.type.tree</field>
+        <field name="model">website.complaint.type</field>
+        <field name="arch" type="xml">
+            <tree string="Complaints" multi_edit="1">
+                <field name="name"/>
+                <field name="default" invisible="1"/>
+                <button type="object" name="set_default" string="Set Default" class="btn-primary" invisible="default"/>
+                <field name="priority" widget="priority"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_website_complaint_type_form" model="ir.ui.view">
+        <field name="name">website.complaint.type.form</field>
+        <field name="model">website.complaint.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <!--                <header>-->
+                <!--                    <button type="object" name="action_drop_complaint" string="Test" class="btn-primary"/>-->
+                <!--                    <field name="state" widget="statusbar"/>-->
+                <!--                </header>-->
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="priority" widget="priority"/>
+                            <!--                            <field name="drop_reason" readonly="state in ('solved', 'dropped')"/>-->
+                            <!--                            <field name="state" readonly="state in ('solved', 'dropped')"/>-->
+                        </group>
+                    </group>
+                </sheet>
+                <!--                <div class="oe_chatter">-->
+                <!--                    <field name="message_follower_ids"/>-->
+                <!--                    <field name="activity_ids"/>-->
+                <!--                    <field name="message_ids"/>-->
+                <!--                </div>-->
+            </form>
+        </field>
+    </record>
+
+</odoo>
+

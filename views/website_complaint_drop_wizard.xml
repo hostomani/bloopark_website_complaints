@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_website_complaint_drop_wizard_form" model="ir.ui.view">
+        <field name="name">website.complaint.drop.wizard.form</field>
+        <field name="model">website.complaint.drop.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="complaint_id" invisible="1"/>
+                            <field name="drop_reason_id"/>
+                            <field name="note_required" invisible="1"/>
+                            <field name="drop_reason_notes" invisible="not note_required"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>
+

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_website_complaint_stage_tree" model="ir.ui.view">
+        <field name="name">website.complaint.stage.tree</field>
+        <field name="model">website.complaint.stage</field>
+        <field name="arch" type="xml">
+            <tree string="Complaints" multi_edit="1">
+                <field name="name"/>
+                <field name="default" invisible="1"/>
+                <button type="object" name="set_default" string="Set Default" class="btn-primary" invisible="default"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_website_complaint_stage_form" model="ir.ui.view">
+        <field name="name">website.complaints.form</field>
+        <field name="model">website.complaint.stage</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button type="object" name="set_default" string="Set Default" class="btn-primary"
+                            invisible="default or not name"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="default" readonly="1"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+</odoo>
+
