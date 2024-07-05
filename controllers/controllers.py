@@ -40,6 +40,7 @@ class WebsiteSaleForm(WebsiteForm):
             'contact_name': kwargs.get('name'),
             'partner_id': partner.id,
             'type': compliant_type.id,
+            'description': kwargs.get('description')
         })
         return json.dumps({'id': complaint.id})
 
