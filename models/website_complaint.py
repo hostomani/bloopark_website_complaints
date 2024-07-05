@@ -29,6 +29,7 @@ class WebsiteComplaint(models.Model):
     contact_name = fields.Char(compute='_compute_contact_name')
     partner_id = fields.Many2one('res.partner')
     user_id = fields.Many2one('res.users')
+    
     stage_id = fields.Many2one(
         'website.complaint.stage', ondelete='restrict', default=_get_default_stage_id,
         group_expand='_read_group_stage_ids', tracking=True, copy=False)
@@ -105,12 +106,54 @@ class WebsiteComplaint(models.Model):
 
     @api.model_create_multi
     def create(self, vals_list):
+        self.get_user_with_least_complaints()
         complaints = super(WebsiteComplaint, self).create(vals_list)
         for complaint in complaints:
-            if complaint.partner_id:
-                complaint.message_subscribe(partner_ids=[complaint.partner_id.id])
+            complaint.assign_user()
+            complaint.message_subscribe(partner_ids=[complaint.partner_id.id])
             # Send email notification
             template = self.env.ref('bloopark_website_complaints.email_template_complaint_registered_notification')
             if template:
                 template.send_mail(complaint.id, force_send=True)
         return complaints
+
+    @api.model
+    def get_user_with_least_complaints(self):
+        # Get the group
+        group = self.env.ref('base.group_user')
+        if not group:
+            return None
+
+        # Get users from the group
+        user_ids = group.users.ids
+
+        if not user_ids:
+            return None
+
+        # Group complaints by user in order to find user with
+        # least complaints to maintain equal complaint distribution
+        # e.g  [{'user_id': (6, 'Marc Demo'), 'user_id_count': 1, '__domain': [('user_id', '!=', False)]}]
+        # Group complaints by user_id and filter by users in the group
+        grouped_complaints = self.env['website.complaint'].read_group(
+            domain=[('user_id', 'in', user_ids)],
+            fields=['user_id'],
+            groupby=['user_id']
+        )
+        _logger.info(f'====================== {grouped_complaints}')
+        if not grouped_complaints:
+            return user_ids[0]
+
+        grouped_complaints_user_ids = list(map(lambda x: x.get('user_id')[0], grouped_complaints))
+
+        for id in user_ids:
+            if id not in grouped_complaints_user_ids:
+                return id
+
+        min_complaint_user = min(grouped_complaints, key=lambda x: x['user_id_count'])
+        return min_complaint_user.get('user_id')[0]
+
+    def assign_user(self):
+        for rec in self:
+            rec.user_id = self.get_user_with_least_complaints()
+            rec.message_subscribe(partner_ids=[rec.user_id.partner_id.id])
+

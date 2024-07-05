@@ -7,6 +7,8 @@
             <tree string="complaint" multi_edit="1">
                 <field name="name" string="Title"/>
                 <field name="contact_name"/>
+                <field name="partner_id" string="Customer" widget="many2one_avatar"/>
+                <field name="user_id" string="Assignee"  widget="many2one_avatar_user"/>
                 <field name="create_date"/>
                 <!--                <field name="product_uom_category_id" column_invisible="True"/>-->
                 <!--                <field name="date" optional="show"/>-->
@@ -100,9 +102,6 @@
                                     <field name="contact_name"/>
                                 </span>
                             </div>
-                            <!--                            <div>-->
-                            <!--                              <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>-->
-                            <!--                            </div>-->
                             <div class="o_kanban_record_bottom">
                                 <div class="oe_kanban_bottom_left">
                                     <field name="priority" widget="priority"/>
